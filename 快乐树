@@ -1,0 +1,26 @@
+
+
+
+class Solution {
+    public boolean isHappy(int n) {
+        int slow = n;
+        int fast = n;
+        do{
+            slow = squareSum(slow);
+            fast = squareSum(fast);
+            fast = squareSum(fast);
+        }while (slow != fast);
+        return slow == 1;
+    }
+
+    public int squareSum(int num) {
+        int bit = 0;
+        int sum = 0;
+        while (num > 0) {
+            bit = num % 10;
+            sum += bit * bit;
+            num /= 10;
+        }
+        return sum;
+    }
+}
