@@ -1,0 +1,32 @@
+/*
+给你一个整数数组 arr，请你帮忙统计数组中每个数的出现次数。
+如果每个数的出现次数都是独一无二的，就返回 true；否则返回 false。
+ 
+提示：
+1 <= arr.length <= 1000
+-1000 <= arr[i] <= 1000
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/unique-number-of-occurrences
+*/
+
+class Solution {
+    public boolean uniqueOccurrences(int[] arr) {
+        Map<Integer, Integer> map = new HashMap<>();
+        //将数组数字对应次数放入map中
+        for (int num : arr) {
+            int count = map.getOrDefault(num, 0);
+            map.put(num, count + 1);
+        }
+        for (int num : arr) {
+            if (map.containsKey(num)) {
+                int value = map.get(num);
+                map.remove(num);
+                if (map.containsValue(value)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
